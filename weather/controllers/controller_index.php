@@ -18,4 +18,6 @@ class Controller_Index extends Controller {
 //    {
 //        $this->view->generate("views/main_nav_template.php","views/template_view.php");
 //    }
+
+
 }

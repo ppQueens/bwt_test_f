@@ -6,7 +6,6 @@
  * Time: 8:41 PM
  */
 
-
 class Model {
 
     public function get_gata(){

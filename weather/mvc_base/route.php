@@ -26,16 +26,15 @@ class Route{
             $action_name = $routes[2];
         }
 
-        $model_name = "Model_".$controller_name;
+        #$model_name = "model_".$controller_name;
         $controller_name = "controller_".$controller_name;
         $action_name = "action_".$action_name;
 
-        $model_file = strtolower($model_name);
-        $model_path = "weather/models/".$model_file;
+        #$model_file = strtolower($model_name);
+        #$model_path = "weather/models/".$model_file;
 
 
-        (Route::check_file_exists($model_path) and include($model_path));
-//        die("File ".$model_file." does not exists!"));
+        #(Route::check_file_exists($model_path) and include($model_path)) or die("File ".$model_file." does not exists!");
 
         $controller_file = strtolower($controller_name);
         $controller_path = "weather/controllers/".$controller_file;

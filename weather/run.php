@@ -10,5 +10,5 @@ require_once 'mvc_base/model.php';
 require_once 'mvc_base/view.php';
 require_once 'mvc_base/controller.php';
 require_once 'mvc_base/route.php';
-
+require_once 'controllers/db_operations.php';
 Route::start();

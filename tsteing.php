@@ -10,6 +10,9 @@ function t($d){
     print($d);
 }
 
-t(...array(23));
+
+
+$str = "gmail,";
+print 5*trim($str,",");
 
 

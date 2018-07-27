@@ -7,8 +7,8 @@
  */
 
 
-require_once ("weather\controllers\db_connect.php");
-class Model_Registration extends Model{
+
+class scsc extends Model{
 
 //    private $full_name;
 //    private $email;
@@ -21,14 +21,14 @@ class Model_Registration extends Model{
 
     function __construct($fullName, $email, $password, $gender=null, $birthdate=null){
 
-            $this->user_data[0] = $fullName;
-            $this->user_data[1] = $email;
-            $this->user_data[2] = $password;
+            $this->user_data["full_name"] = $fullName;
+            $this->user_data["email"] = $email;
+            $this->user_data["password"] = $password;
             if($gender){
-                $this->user_data[3] = $gender;
+                $this->user_data["gender"] = $gender;
             }
             if ($birthdate){
-                $this->user_data[4] = $birthdate;
+                $this->user_data["birthdate"] = $birthdate;
             }
     }
 
