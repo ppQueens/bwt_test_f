@@ -6,8 +6,7 @@
             <label for="inputFirstName" class="col-lg-2 control-label">Имя <upper>*</upper></label>
             <div class="col-lg-10">
                 <input class="form-control" name="first_name" id="inputFirstName" placeholder="Имя" type="text" required="true">
-                <div class="alert-danger"><b><?php if($data){
-                        print($data);} ?></b></div>
+
             </div>
 
         </div>
@@ -23,6 +22,8 @@
             <label for="inputEmail" class="col-lg-2 control-label">Email <upper>*</upper></label>
             <div class="col-lg-10">
                 <input class="form-control" name="email" id="inputEmail" placeholder="Email" type="text" required="true">
+                <div class="alert-danger"><b><?php if($data){
+                            print($data);} ?></b></div>
             </div>
         </div>
 
