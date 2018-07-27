@@ -40,11 +40,11 @@ class Controller_Registration extends Controller {
                     $_POST["gender"],$_POST["birthdate"]);
 
                 ##todo
-                ##1.проверка пользователя на уникальность(email) (на сервере)
+                ##1.проверка пользователя на уникальность(email) (на сервере) +
                 ##2.проверка email на корректность (на клиенте)
                 ##3.проверка на пароля на длину (на клиенте)
+                ##проверка остальных  полей на длину
                 print("ACTION_REGISTER");
-                ####################################проверка на существующую почту
 
                 $db_connect = new DB_Connect();
                 try{
@@ -67,15 +67,8 @@ class Controller_Registration extends Controller {
                 else{
                    # throw new Exception("User is already exists");
                     $this->data = "Пользователь с таким email уже существует";
-                   # print(self::$data);
-
-                        global $file;
-                        $file = __DIR__ . parse_url($_SERVER['REQUEST_URI'])['path'];
-                        #print($file);
-                        if (is_file($file)) return false;
-
                     $this->action_index($this->content,$this->template);
-//                    header("Location: /registration.php");
+
                 }
 
 
