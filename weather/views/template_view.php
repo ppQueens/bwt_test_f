@@ -73,8 +73,8 @@ include "weather/views/".$content; ?>
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="static/jquery/jquery-3.3.1.min.js"></script>
+<script src="../../static/jquery/jquery-3.3.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="static/js/bootstrap.min.js"></script>
+<script src="../../static/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -3,25 +3,26 @@
     <fieldset>
         <legend>Регистрация нового пользователя</legend>
         <div class="form-group">
-            <label for="inputFirstName" class="col-lg-2 control-label">Имя</label>
+            <label for="inputFirstName" class="col-lg-2 control-label">Имя <upper>*</upper></label>
             <div class="col-lg-10">
-                <input class="form-control" name="first_name" id="inputFirstName" placeholder="Имя" type="text">
+                <input class="form-control" name="first_name" id="inputFirstName" placeholder="Имя" type="text" required="true">
+                <div class="alert-danger"><b><?php if($data){
+                        print($data);} ?></b></div>
             </div>
-            <div ><?php if($data){
-                        print($data);} ?></div>
+
         </div>
 
         <div class="form-group">
-            <label for="inputSureName" class="col-lg-2 control-label">Фамилия</label>
+            <label for="inputSureName" class="col-lg-2 control-label">Фамилия <upper>*</upper></label>
             <div class="col-lg-10">
-                <input class="form-control" name="last_name" id="inputSureName" placeholder="Фамилия" type="text">
+                <input class="form-control" name="last_name" id="inputSureName" placeholder="Фамилия" type="text" required="true">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+            <label for="inputEmail" class="col-lg-2 control-label">Email <upper>*</upper></label>
             <div class="col-lg-10">
-                <input class="form-control" name="email" id="inputEmail" placeholder="Email" type="text">
+                <input class="form-control" name="email" id="inputEmail" placeholder="Email" type="text" required="true">
             </div>
         </div>
 
@@ -51,9 +52,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+            <label for="inputPassword" class="col-lg-2 control-label">Пароль <upper>*</upper></label>
             <div class="col-lg-10">
-                <input class="form-control" name="password" id="inputPassword" placeholder="Password" type="password">
+                <input class="form-control" name="password" id="inputPassword" placeholder="Password" type="password" required="true">
 
             </div>
         </div>

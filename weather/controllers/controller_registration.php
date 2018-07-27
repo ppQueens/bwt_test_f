@@ -9,7 +9,7 @@
 
 class Controller_Registration extends Controller {
 
-     private static $db_connect;
+     private $db_connect;
      private $content = "reg_form_template.php";
      private $template = "template_view.php";
      private $data;
@@ -33,7 +33,7 @@ class Controller_Registration extends Controller {
             ###########################################print
             print_r($_POST);
             if(!empty($_POST["first_name"]) and !empty($_POST['last_name']) and !empty($_POST['password'])
-            and !empty($_POST["email"]) and !empty($_POST["birthdate"])){
+            and !empty($_POST["email"])){
 
                 $user_model = new Model_Registration($_POST["first_name"]." ".$_POST["last_name"],
                     $_POST["email"], password_hash($_POST['password'],PASSWORD_BCRYPT),
@@ -48,7 +48,7 @@ class Controller_Registration extends Controller {
 
                 $db_connect = new DB_Connect();
                 try{
-                    self::$db_connect = $db_connect->get_connect();
+                    $this->db_connect = $db_connect->get_connect();
                 }
                 catch (Exception $e){
                     print($e);
@@ -86,10 +86,15 @@ class Controller_Registration extends Controller {
         $query = "INSERT INTO user_test(full_name, email, password, gender, birthdate) VALUES(?, ?, ?, ?, ?)";
 
        #########
-        if (!$this->querymaker($query,"sssis",$user->get_data())){
+        $types = "";
+        foreach($user->get_data() as $value){
+            if (is_string($value)) $types .= "s";
+            else if(is_int($value)) $types .= "i";
+        }
+        if (!$this->querymaker($query,$types,$user->get_data())){
             die("SOMETHING IS WRONG WITH QUERY");
         }
-        self::$db_connect->close();
+        $this->db_connect->close();
     }
 
     function clean_email($arr_data){
@@ -99,7 +104,7 @@ class Controller_Registration extends Controller {
 
     }
     private function querymaker($query,$types,$data){
-        $mysqli = self::$db_connect;
+        $mysqli = $this->db_connect;
         $prep_stmt = $mysqli->prepare($query);
         print_r($data);
         $prep_stmt->bind_param($types,...$data);
