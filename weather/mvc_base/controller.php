@@ -5,7 +5,7 @@
  * Date: 25/07/2018
  * Time: 8:44 PM
  */
-
+require_once ("weather/models/model_user.php");
 class Controller {
 
     public $model;
@@ -28,5 +28,7 @@ class Controller {
             self::$data = $data;
         }
         $this->view->generate($this->content,$this->template, $data);
-}
+    }
+
+
 }

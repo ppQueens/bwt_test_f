@@ -10,8 +10,8 @@
 class Controller_Index extends Controller {
 
     function __construct()
-    {
-        $this->content = "log_form_template.php";
+    {   Controller::__construct();
+        $this->content = "main_nav_template.php";
         $this->template = "template_view.php";
     }
 //    function action_index()

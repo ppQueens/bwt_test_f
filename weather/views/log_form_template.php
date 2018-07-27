@@ -1,7 +1,11 @@
 
-<form class="form-horizontal" action="login.php/login" method="POST">
+<form class="form-horizontal" action="/login.php" method="POST">
+    <input hidden name="post" value="login">
     <fieldset>
         <legend>Войти как зарегистрированный пользватель</legend>
+        <div class="alert-danger"><b><?php if($data){
+                    print($data);} ?></b></div>
+        </div>
         <div class="form-group">
             <label for="inputEmail" class="col-lg-2 control-label">Почта</label>
             <div class="col-lg-10">

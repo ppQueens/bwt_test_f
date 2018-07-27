@@ -11,7 +11,7 @@ class Model_User extends Model {
     private $user_data;
 
 
-    function __construct($email, $password, $gender=null, $birthdate=null, $full_name=null){
+    function __construct($email=null, $password=null, $gender=null, $birthdate=null, $full_name=null){
 
         if($gender){
             $this->user_data["full_name"] = $full_name;
@@ -26,39 +26,38 @@ class Model_User extends Model {
         }
     }
 
-    public function is_user_exist(){
-        $result = $this->pre_maker(array("email" => $this->user_data["email"]));
-        print_r($result[2]);
-        $query = "SELECT id FROM `user_test` WHERE email = (?)";
-        return  (new DB_Operations())->query_executor($query,$result[0],$result[2]);
+    public function is_user_exist($take_this_field = "*",$clause="email",$clause_value=null){
+
+        $f = sprintf("%s",$take_this_field);
+        $c = sprintf("%s = '%s'",$clause,$clause_value == null ? $this->user_data["email"] : $clause_value);
+        $query_format = sprintf("SELECT  %s FROM `user_test` WHERE %s",$f,$c);
+
+        return  (new DB_Operations())->query_executor($query_format);
 
     }
 
+
+
     public function save_to_db(){
+        $field_value = $this->pre_maker($this->user_data);
+        $query_format = sprintf("INSERT INTO user_test(%s) VALUES(%s)",$field_value[0],
+        $field_value[1]);
+        print($query_format);
 
-        $result = $this->pre_maker($this->user_data);
-        $values_mask = rtrim(str_repeat("?,",count($result[2])),', ');
-
-        $query = "INSERT INTO user_test($result[1]) VALUES($values_mask)";
-        if (!(new DB_Operations())->query_executor($query,$result[0],$result[2])){
+        if (!(new DB_Operations())->query_executor($query_format)){
             die("SOMETHING IS WRONG WITH QUERY");
         }
-        (new DB_Operations());
+        return True;
     }
 
     private function pre_maker($user){
         $fields = "";
-        $types = "";
-        $data = array();
+        $data = "";
         foreach($user as $field => $value){
             $fields .= $field.",";
-            array_push($data, strtolower($value));
-            if (is_string($value)) $types .= "s";
-            else if(is_int($value)) $types .= "i";
-
+            $data .= "'".$value."',";
         }
-        print($fields);
-        return [$types, rtrim($fields,",")."", $data];
+        return [rtrim($fields,",")."", rtrim($data,",").""];
 
     }
 

@@ -9,7 +9,7 @@
 class Route{
     static function check_file_exists($file){
         if (file_exists($file)) return True;
-        print($file);
+        #print($file);
         return False;
 }
     static function start(){
@@ -49,7 +49,7 @@ class Route{
 
         $class_name = explode(".",$controller_name)[0];
         #$action_name = explode(".", $action_name)[0];
-        print($action_name);
+
         $controller = new $class_name();
         $action = $action_name;
 

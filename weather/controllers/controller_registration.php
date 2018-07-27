@@ -6,7 +6,7 @@
  * Time: 9:26 PM
  */
 
-require_once ("weather/models/model_user.php");
+require_once ("weather/controllers/controller_login.php");
 class Controller_Registration extends Controller {
 
      private $db_connect;
@@ -25,13 +25,17 @@ class Controller_Registration extends Controller {
     }
 
 
-//    function action_index()
-//    {
-//        $this->view->generate($this->content,$this->template,$this->data);
-//    }
+    function action_index()
+    {
+        if (Controller_Login::is_logged()){
+            header("Location: /index.php");
+        }
+        Controller::action_index();
+
+    }
 
 
-    function action_register(){
+    public function action_register(){
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
             ###########################################print
@@ -39,7 +43,7 @@ class Controller_Registration extends Controller {
             if(!empty($_POST["first_name"]) and !empty($_POST['last_name']) and !empty($_POST['password'])
             and !empty($_POST["email"])){
 
-                $user_model = new Model_User($_POST["email"], password_hash($_POST['password'],PASSWORD_BCRYPT),
+                $user_model = new Model_User($_POST["email"], hash("sha256",$_POST['password']),
                     $_POST["gender"],$_POST["birthdate"],$_POST["first_name"]." ".$_POST["last_name"]);
 
                 ##todo
@@ -57,7 +61,7 @@ class Controller_Registration extends Controller {
                 }
 
                 #is_user_exists()&
-                if ($user_model->is_user_exist())
+                if (!$user_model->is_user_exist())
                 {
                     try{
                         $user_model->save_to_db();
@@ -83,10 +87,6 @@ class Controller_Registration extends Controller {
             PRINT("SOMETHING IS WRONG. THE METHOD IS GET");
         }
     }
-
-
-
-
 
 
 

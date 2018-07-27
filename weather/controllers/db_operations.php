@@ -45,20 +45,19 @@ class DB_Operations{
         // TODO: Implement __destruct() method.
     }
 
-
-    public function query_executor($query, $types, $data){
-
-        $prep_stmt = $this->get_connect()->prepare($query);
-        if(!$prep_stmt){
-            print("SOMETHING IS WRONG WITH query_executor");
-            #return $prep_stmt;
+    public function query_executor($query){
+        $res = $this->get_connect()->query($query);
+        if ($res === null){
+            return true;
         }
-        $prep_stmt->bind_param($types,...$data);
-        $res = $prep_stmt->execute();
-        $prep_stmt->store_result();
-        $num_rows = $prep_stmt->num_rows();
-        $prep_stmt->close();
-        return $num_rows >= 1 ? null : $res;
+        return $res->fetch_assoc();
+
     }
+
+
+
+
+
+
 
 }

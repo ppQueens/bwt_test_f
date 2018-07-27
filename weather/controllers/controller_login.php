@@ -17,19 +17,64 @@ class Controller_Login extends Controller {
     }
 
 
-//    function action_index()
-//    {
-//        $this->view->generate("log_form_template.php","template_view.php");
-//    }
+    function action_index()
+    {
+        if(self::is_logged()){
+            header("Location: /index.php");
+        }
+        Controller::action_index();
+
+    }
 
     public function action_login(){
-        if(isset($_POST["login"]) and isset($_POST["password"])){
-            $login = $_POST["login"];
-            $pass = $_POST["password"];
 
-            $user = new Model_User($login, $pass);
-            $user->is_exists();
+        if(isset($_POST["email"]) and isset($_POST["password"])){
+            $user = new Model_User($_POST["email"], $_POST["password"]);
+            $user_row = $user->is_user_exist("full_name, password, hash");
+
+            if($user_row and $user_row["password"] == hash("sha256",$user->get_data()["password"]))
+            {
+                $hash = hash("sha256", time());
+                setcookie("name",$user_row["full_name"]);
+                setcookie("hash", $hash, time()+60*60*24);
+
+
+                $query = sprintf("UPDATE user_test SET hash='%s' WHERE email='%s'",
+                    $hash,$user->get_data()["email"]);
+                print($query);
+
+                (new DB_Operations())->query_executor($query);
+
+                header("Location: /index.php");
+            }
+            else{
+                $this->general_action("Неправильный email или пароль!");
+//                print($user_row["password"]);
+//                print("         ");
+//                print(password_hash(($this->user->get_data())["password"],PASSWORD_BCRYPT));
+
+            }
 
         }
+        else{
+            print("CHECK \$_POST ARRAY");
+        }
+    }
+
+    public static function is_logged()
+    {
+        if (isset($_COOKIE["hash"])) {
+            $user_data = (new Model_User())->is_user_exist("full_name, email, hash","hash",
+                $_COOKIE["hash"]);
+
+            if($user_data["hash"] == $_COOKIE["hash"]){
+                return $user_data;
+            }
+        }
+
+        setcookie("name","",time()-1,"/");
+        setcookie("hash", "", time()-1,"/");
+        return false;
+
     }
 }
