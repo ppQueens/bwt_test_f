@@ -8,8 +8,14 @@
 
 
 class Controller_Index extends Controller {
-    function action_index()
+
+    function __construct()
     {
-        $this->view->generate("views/main_nav_template.php","views/template_view.php");
+        $this->content = "log_form_template.php";
+        $this->template = "template_view.php";
     }
+//    function action_index()
+//    {
+//        $this->view->generate("views/main_nav_template.php","views/template_view.php");
+//    }
 }

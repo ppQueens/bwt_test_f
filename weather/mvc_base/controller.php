@@ -10,14 +10,20 @@ class Controller {
 
     public $model;
     public $view;
+    public $content;
+    public $template;
 
 
-    function __construct()
+    public function __construct()
     {
         $this->view = new View();
     }
 
-    function action_index(){
-
+    public function action_index(){
+        $this->view->generate($this->content,$this->template);
     }
+
+    public function general_action($data = null){
+        $this->view->generate($this->content,$this->template, $data);
+}
 }

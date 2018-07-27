@@ -10,28 +10,31 @@
 class Controller_Registration extends Controller {
 
      private $db_connect;
-     private $content = "reg_form_template.php";
-     private $template = "template_view.php";
+//     private $content = "reg_form_template.php";
+//     private $template = "template_view.php";
      private $data;
 
 
 
-//    function __construct($some_data=null)
-//    {
-//        $this->data = $some_data;
-//    }
 
-
-    function action_index()
+    function __construct()
     {
-        $this->view->generate($this->content,$this->template,$this->data);
+        Controller::__construct();
+        $this->content = "reg_form_template.php";
+        $this->template = "template_view.php";
     }
+
+
+//    function action_index()
+//    {
+//        $this->view->generate($this->content,$this->template,$this->data);
+//    }
 
 
     function action_register(){
         if($_SERVER['REQUEST_METHOD']=='POST'){
             ###########################################print
-            print_r($_POST);
+            #print_r($_POST);
             if(!empty($_POST["first_name"]) and !empty($_POST['last_name']) and !empty($_POST['password'])
             and !empty($_POST["email"])){
 
@@ -59,6 +62,7 @@ class Controller_Registration extends Controller {
                 {
                     try{
                         $this->save_to_db($user_model);
+                        header("Location: http://localhost:8000/login.php");
                     }
                     catch (Exception $e){
                         print($e);
@@ -66,8 +70,8 @@ class Controller_Registration extends Controller {
                 }
                 else{
                    # throw new Exception("User is already exists");
-                    $this->data = "Пользователь с таким email уже существует";
-                    $this->action_index($this->content,$this->template);
+                   ;
+                    $this->general_action("Пользователь с таким email уже существует");
 
                 }
 

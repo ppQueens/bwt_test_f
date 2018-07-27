@@ -7,8 +7,17 @@
  */
 
 class Controller_Login extends Controller {
-    function action_index()
+
+
+    function __construct()
     {
-        $this->view->generate("views/log_form_template.php","views/template_view.php");
+        $this->content = "log_form_template.php";
+        $this->template = "template_view.php";
     }
+
+
+//    function action_index()
+//    {
+//        $this->view->generate("log_form_template.php","template_view.php");
+//    }
 }

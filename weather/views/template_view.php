@@ -62,9 +62,7 @@
 <div class="container">
     <div class="row">
 
-<?php
-
-include "weather/views/".$content; ?>
+<?php include "weather/views/".$content; ?>
 </div>
 </div>
 
