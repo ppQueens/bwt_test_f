@@ -12,7 +12,7 @@ class Controller_Registration extends Controller {
      private $db_connect;
 //     private $content = "reg_form_template.php";
 //     private $template = "template_view.php";
-     private $data;
+     #atic private $data;
 
 
 
@@ -32,6 +32,7 @@ class Controller_Registration extends Controller {
 
 
     function action_register(){
+
         if($_SERVER['REQUEST_METHOD']=='POST'){
             ###########################################print
             #print_r($_POST);
@@ -61,7 +62,7 @@ class Controller_Registration extends Controller {
                     try{
                         $user_model->save_to_db();
                         print("<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                        header("Location: http://localhost:8000/login.php");
+                        header("Location: /login.php");
                     }
                     catch (Exception $e){
                         print($e);
@@ -69,6 +70,7 @@ class Controller_Registration extends Controller {
                 }
                 else{
                    #throw new Exception("User is already exists");
+                    unset($_POST);
                    $this->general_action("Пользователь с таким email уже существует");
 
                 }

@@ -12,7 +12,7 @@ class Controller {
     public $view;
     public $content;
     public $template;
-
+    public static $data;
 
     public function __construct()
     {
@@ -24,6 +24,9 @@ class Controller {
     }
 
     public function general_action($data = null){
+        if(!$data){
+            self::$data = $data;
+        }
         $this->view->generate($this->content,$this->template, $data);
 }
 }

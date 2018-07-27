@@ -52,7 +52,7 @@ class Model_User extends Model {
         $data = array();
         foreach($user as $field => $value){
             $fields .= $field.",";
-            array_push($data, $value);
+            array_push($data, strtolower($value));
             if (is_string($value)) $types .= "s";
             else if(is_int($value)) $types .= "i";
 

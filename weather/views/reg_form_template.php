@@ -1,5 +1,7 @@
 
-<form class="form-horizontal" action="registration.php/register" method="POST">
+<form class="form-horizontal" action="/registration.php" method="POST">
+    <input hidden name="post" value="register">
+
     <fieldset>
         <legend>Регистрация нового пользователя</legend>
         <div class="form-group">

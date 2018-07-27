@@ -26,6 +26,9 @@ class Route{
             $action_name = $routes[2];
         }
 
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $action_name = $_POST["post"];
+        }
         #$model_name = "model_".$controller_name;
         $controller_name = "controller_".$controller_name;
         $action_name = "action_".$action_name;
