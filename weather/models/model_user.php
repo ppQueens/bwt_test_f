@@ -36,8 +36,8 @@ class Model_User extends Model {
 
 
 
-    public function save_to_db(){
-        Model::save_to_db();
+    public function save_to_db($table = "user_test", $field_value = "user property"){
+        Model::save_to_db($table,$field_value);
     }
 
 

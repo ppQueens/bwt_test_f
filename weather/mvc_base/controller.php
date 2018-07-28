@@ -5,8 +5,8 @@
  * Date: 25/07/2018
  * Time: 8:44 PM
  */
-require_once ("weather/models/model_user.php");
-require_once ("weather/controllers/controller_login.php");
+
+require_once (__DIR__."/../controllers/controller_login.php");
 class Controller {
 
     public $model;

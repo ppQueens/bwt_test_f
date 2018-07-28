@@ -6,22 +6,19 @@
  * Time: 1:29 AM
  */
 
+require_once (__DIR__."/../models/model_feed.php");
 
 class Controller_Feedback extends Controller {
 
-    private $feed_content;
 
-    function __construct()
+    function __construct($content = "feedback_template.php")
     {   Controller::__construct();
 
-        $this->content = "feedback_template.php";
+        $this->content = $content;
         $this->template = "template_view.php";
 
     }
 
-    public function add_feed_content($author_email, $text){
-        $this->feed_content = new Model_Feed($author_email,$text,new DateTime());
-    }
 
     function action_index()
     {
@@ -30,12 +27,40 @@ class Controller_Feedback extends Controller {
 
 
 
-    public function leave_feedback(){
-        if($this->feed_content and $this->feed_content->is_user_exist()){
-            $this->feed_content->save_to_db();
+    public function action_leave_feedback(){
+        print("EEFEFK");
+        if(isset($_POST["email"]) and isset($_POST["feedback"])) {
+            print("EFEF");
+            $feedback = new Model_Feed($_POST["email"],$_POST["feedback"],
+                (new DateTime())->setTimezone(new DateTimeZone("Europe/Kiev")));;
+
+
+            if ($feedback and $id = $feedback->is_user_exist()) {
+                $feedback->save_to_db("feedback_test",$id);
+                print("HEREF");
+            }
+            return false;
+        }
+    }
+
+    public function action_show_feeds(){
+        if ($user = Controller_Login::is_logged()){
+            $content  = new Controller_Feedback("all_feed_template.php");
+
+
+            $query = "SELECT `email`, `text`, `time` FROM feedback_test
+                    INNER JOIN user_test ON feedback_test.author = user_test.id";
+            $all_feeds = (new DB_Operations())->query_executor($query);
+            $data = array("user"=> $user, "feeds"=>$all_feeds);
+            $content->view->generate($content->content,$content->template,$data);
 
         }
-        return false;
-    }
+        else{
+            return false;
+        }
+
+
+}
+
 }
 

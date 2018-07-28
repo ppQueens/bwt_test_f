@@ -9,29 +9,30 @@
 
 
 class Model_Feed extends Model {
+    private $author_email;
     private $text;
-    private $datetime;
+    private $time;
 
 
     function __construct($author_email, $text, $datetime)
     {
-        $this->user = new Model_User($author_email);
+        $this->author_email = $author_email;
         $this->text = $text;
-        $this->datetime = $datetime;
+        $this->time = $datetime;
     }
 
-    public  function get_data(){
-
+    public function get_data(){
+        Model::get_data();
     }
 
     public function is_user_exist(){
-        return $this->user->is_user_exist("id");
+        return (new Model_User())->is_user_exist("id","email",$this->author_email);
     }
 
-    public function save_to_db(){
-        $query = sprintf("SELECT id FROM feedback_test WHERE email=%s",$this->user["email"]);
-        $id_value = (new DB_Operations())->query_executor($query);
-        Model::save_to_db("feedback_test",array("id" => $id_value["id"]));
+    public function save_to_db($table = "feedback_test", $field_value = "user property"){
+
+        Model::save_to_db("feedback_test",array("author"=>$field_value["id"],"text"=>$this->text,
+            'time'=> $this->time->format('Y-m-d H:i')));
     }
 
 

@@ -50,7 +50,12 @@ class DB_Operations{
         if ($res === null or $res === true){
             return true;
         }
-        return $res->fetch_assoc();
+        $full_result = array();
+        while($row = $res->fetch_assoc()){
+            array_push($full_result,$row);
+        }
+        print_r($full_result);
+        return count($full_result) == 1 ? $full_result[0] : $full_result;
 
     }
 

@@ -31,7 +31,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/index.php">Главная <span class="sr-only">(current)</span></a></li>
                 <li>
                     <a href="#">Link</a></li>
                 <li class="dropdown">
@@ -49,7 +49,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"> <?php if($data){ print("Your login: ".$data["email"]);}
+                <li><a href="#"> <?php if($data){ print("Your login: ".$data["user"]["email"]);}
                         else{ echo '<li><a href="/exit.php">Вход</a></li>';}
                 ?></a></li>
             </ul>

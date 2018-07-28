@@ -38,10 +38,20 @@ class Route{
             $controller_name = "controller_login.php";
             $action_name = "action_exit";
         }
+
+        if($routes[1] == "feedback.php"){
+            if(isset($_POST["post"])) {
+                $action_name;
+            }
+            else{
+                $action_name = "action_show_feeds";
+            }
+        }
         #$model_file = strtolower($model_name);
         #$model_path = "weather/models/".$model_file;
 
 
+        #(Route::check_file_exists($model_path) and include($model_path)) or die("File ".$model_file." does not exists!");
         #(Route::check_file_exists($model_path) and include($model_path)) or die("File ".$model_file." does not exists!");
 
         $controller_file = strtolower($controller_name);

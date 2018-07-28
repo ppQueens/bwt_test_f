@@ -11,8 +11,8 @@ class Model {
 
     protected $user;
 
-    protected function get_data(){
-
+    public function get_data(){
+        return $this->user;
     }
 
 
@@ -27,6 +27,7 @@ class Model {
         return [rtrim($fields,",")."", rtrim($data,",").""];
 
     }
+
 
 
     protected function save_to_db($table = "user_test", $field_value = "user property"){

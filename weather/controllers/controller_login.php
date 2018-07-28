@@ -6,6 +6,8 @@
  * Time: 1:08 AM
  */
 
+require_once (__DIR__."/../models/model_user.php");
+
 class Controller_Login extends Controller {
 
 
@@ -31,6 +33,7 @@ class Controller_Login extends Controller {
         if(isset($_POST["email"]) and isset($_POST["password"])){
             $user = new Model_User($_POST["email"], $_POST["password"]);
             $user_row = $user->is_user_exist("full_name, password, hash");
+
 
             if($user_row and $user_row["password"] == hash("sha256",$user->get_data()["password"]))
             {
