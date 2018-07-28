@@ -39,13 +39,9 @@ class Route{
             $action_name = "action_exit";
         }
 
-        if($routes[1] == "feedback.php"){
-            if(isset($_POST["post"])) {
-                $action_name;
-            }
-            else{
+        if($routes[1] == "feedback.php" and $routes[2] == "show_feeds") {
                 $action_name = "action_show_feeds";
-            }
+
         }
         #$model_file = strtolower($model_name);
         #$model_path = "weather/models/".$model_file;

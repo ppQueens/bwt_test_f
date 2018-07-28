@@ -11,13 +11,13 @@
             foreach ($data["feeds"] as $value){
 
                 echo '  <div class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <strong>'.$value["email"].'.</strong> <span class="text-muted">'.$value["time"].'.</span>
+                            <strong>'.$value["email"].'</strong> <span class="text-muted">'.$value["time"].'</span>
                         </div>
                         <div class="panel-body">
-                            '.$value["text"].'.
+                           '.$value["text"].'
                         </div><!-- /panel-body -->
                     </div><!-- /panel panel-default -->
                 </div><!-- /col-sm-5 -->

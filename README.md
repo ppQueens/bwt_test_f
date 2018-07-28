@@ -2,4 +2,20 @@
 
 \>\>\>php -S server:port route.php
 
-(В бд пока одна user_test, поля - см. изображение)
+
+ 1. Pages
+    - login page (login.php) +
+    - registration page (registration.php) +
+    - all feedbackes page (feedback.php/show_feeds) +
+    - feedback page (feedback.php) +
+    - weather page -
+    - main page (index.php) +
+
+ 2. Validation
+    - client-side validation form -+
+    - server side validation (user uniqueness) +
+    
+ 3. Parser -
+    
+ 4. Captcha -
+ 

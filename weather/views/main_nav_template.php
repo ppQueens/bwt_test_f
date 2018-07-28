@@ -5,7 +5,7 @@
     </a>
     <?php
         if($data){
-            echo '<a href="/feedback.php" class="list-group-item">Все отзывы </a>';
+            echo '<a href="/feedback.php/show_feeds" class="list-group-item">Все отзывы </a>';
         }
         else{
             echo '<a href="register.php" class="list-group-item">Форма регистрации</a>';
