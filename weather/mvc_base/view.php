@@ -9,8 +9,19 @@
 
 class View {
 
-    function generate($content, $template, $data = null){
-        include 'weather/views/'.$template;
-        #include 'weather/views/'.$content;
+    private $template;
+    public $content;
+
+    function __construct($content, $template)
+    {
+        $this->content = $content;
+        $this->template = $template;
     }
+
+    function generate($data = null){
+        include 'weather/views/'.$this->template;
+    }
+
+
+
 }

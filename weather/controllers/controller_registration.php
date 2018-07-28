@@ -19,9 +19,7 @@ class Controller_Registration extends Controller {
 
     function __construct()
     {
-        Controller::__construct();
-        $this->content = "reg_form_template.php";
-        $this->template = "template_view.php";
+        Controller::__construct("reg_form_template.php","template_view.php");
     }
 
 

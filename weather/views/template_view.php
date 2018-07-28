@@ -50,7 +50,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"> <?php if($data){ print("Your login: ".$data["user"]["email"]);}
-                        else{ echo '<li><a href="/exit.php">Вход</a></li>';}
+                        else{ echo '<li><a href="/login.php">Вход</a></li>';}
                 ?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -63,7 +63,7 @@
 <div class="container">
     <div class="row">
 
-<?php include "weather/views/".$content; ?>
+<?php include "weather/views/".$this->content; ?>
 </div>
 </div>
 

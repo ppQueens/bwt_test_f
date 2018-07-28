@@ -12,10 +12,7 @@ class Controller_Feedback extends Controller {
 
 
     function __construct($content = "feedback_template.php")
-    {   Controller::__construct();
-
-        $this->content = $content;
-        $this->template = "template_view.php";
+    {   Controller::__construct($content, "template_view.php");
 
     }
 
@@ -44,15 +41,15 @@ class Controller_Feedback extends Controller {
     }
 
     public function action_show_feeds(){
-        if ($user = Controller_Login::is_logged()){
+        if ($data = Controller_Login::is_logged()){
             $content  = new Controller_Feedback("all_feed_template.php");
 
 
             $query = "SELECT `email`, `text`, `time` FROM feedback_test
                     INNER JOIN user_test ON feedback_test.author = user_test.id";
             $all_feeds = (new DB_Operations())->query_executor($query);
-            $data = array("user"=> $user, "feeds"=>$all_feeds);
-            $content->view->generate($content->content,$content->template,$data);
+            $data["feeds"]=$all_feeds;
+            $content->view->generate($data);
 
         }
         else{

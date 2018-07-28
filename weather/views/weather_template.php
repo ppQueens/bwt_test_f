@@ -1,6 +1,21 @@
-<h2>СТРАНИЦА С ПОГОДОЙ</h2>
-<p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-<p><small>This line of text is meant to be treated as fine print.</small></p>
-<p>The following snippet of text is <strong>rendered as bold text</strong>.</p>
-<p>The following snippet of text is <em>rendered as italicized text</em>.</p>
-<p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</p>
+
+<h2>Погода на сегодня</h2>
+<?php if($data){
+    echo '<div class="row table-bordered justify-content-center">
+                <div class="col-sm-1 col-sm-offset-1">
+                    .'.$data["weather_short"].'.
+                </div><!-- /col-sm-5 -->
+        
+                <div class="col-sm-8 col-sm-offset-1">
+                    .'.$data["weather_detail"].'.
+                </div><!-- /col-sm-5 -->
+        
+           </div><!-- /row -->\'';
+
+    echo '<div class="row table-bordered">
+                <div class="col-sm-5 col-sm-offset-2">
+                    
+                </div><!-- /col-sm-5 -->
+        
+           </div><!-- /row -->\'';
+} ?>

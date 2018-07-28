@@ -8,14 +8,14 @@
     - registration page (registration.php) +
     - all feedbackes page (feedback.php/show_feeds) +
     - feedback page (feedback.php) +
-    - weather page -
+    - weather page (weather.php/today) +
     - main page (index.php) +
 
  2. Validation
     - client-side validation form -+
     - server side validation (user uniqueness) +
     
- 3. Parser -
+ 3. Weather Parse +
     
  4. Captcha -
  

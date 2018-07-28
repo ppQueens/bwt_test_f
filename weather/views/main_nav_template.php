@@ -14,6 +14,6 @@
         ?>
 
 
-    <a href="#" class="list-group-item">Погода
+    <a href="/weather.php" class="list-group-item">Погода
     </a>
 </div>

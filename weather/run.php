@@ -11,4 +11,7 @@ require_once 'mvc_base/view.php';
 require_once 'mvc_base/controller.php';
 require_once 'mvc_base/route.php';
 require_once 'controllers/db_operations.php';
+
+require 'vendor/autoload.php';
+
 Route::start();

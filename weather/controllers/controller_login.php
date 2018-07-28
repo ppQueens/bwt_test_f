@@ -13,9 +13,7 @@ class Controller_Login extends Controller {
 
     function __construct()
     {
-        Controller::__construct();
-        $this->content = "log_form_template.php";
-        $this->template = "template_view.php";
+        Controller::__construct("log_form_template.php","template_view.php");
     }
 
 
@@ -71,7 +69,7 @@ class Controller_Login extends Controller {
                 $_COOKIE["hash"]);
 
             if($user_data["hash"] == $_COOKIE["hash"]){
-                return $user_data;
+                return array("user"=>$user_data);
             }
             else{
                 setcookie("name","",time()-1,"/");

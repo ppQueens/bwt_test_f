@@ -10,9 +10,7 @@
 class Controller_Index extends Controller {
 
     function __construct()
-    {   Controller::__construct();
-        $this->content = "main_nav_template.php";
-        $this->template = "template_view.php";
+    {   Controller::__construct("main_nav_template.php","template_view.php");
     }
     function action_index()
     {

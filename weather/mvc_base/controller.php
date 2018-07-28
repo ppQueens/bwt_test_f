@@ -15,14 +15,17 @@ class Controller {
     public $template;
     public static $data;
 
-    public function __construct()
+    public function __construct($content, $template)
     {
-        $this->view = new View();
+        $this->view = new View($content, $template);
+
+        //        $this->content = ;
+//        $this->template = "template_view.php";
     }
 
     public function action_index()
     {
-        $this->view->generate($this->content,$this->template,Controller_Login::is_logged());
+        $this->view->generate(Controller_Login::is_logged());
 
     }
 
@@ -30,7 +33,7 @@ class Controller {
         if(!$data){
             self::$data = $data;
         }
-        $this->view->generate($this->content,$this->template, $data);
+        $this->view->generate($data);
     }
 
 

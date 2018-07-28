@@ -43,6 +43,11 @@ class Route{
                 $action_name = "action_show_feeds";
 
         }
+
+        if($routes[1] == "weather.php" and $routes[2] == "today"){
+            $action_name = "action_weather_today";
+
+        }
         #$model_file = strtolower($model_name);
         #$model_path = "weather/models/".$model_file;
 
@@ -63,7 +68,7 @@ class Route{
 
         $controller = new $class_name();
         $action = $action_name;
-        print($action);
+        print($controller_name);
         if(method_exists($controller,$action)){
             try{
                 $controller->$action();
