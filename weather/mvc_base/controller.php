@@ -6,6 +6,7 @@
  * Time: 8:44 PM
  */
 require_once ("weather/models/model_user.php");
+require_once ("weather/controllers/controller_login.php");
 class Controller {
 
     public $model;
@@ -19,8 +20,10 @@ class Controller {
         $this->view = new View();
     }
 
-    public function action_index(){
-        $this->view->generate($this->content,$this->template);
+    public function action_index()
+    {
+        $this->view->generate($this->content,$this->template,Controller_Login::is_logged());
+
     }
 
     public function general_action($data = null){

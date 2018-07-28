@@ -33,6 +33,11 @@ class Route{
         $controller_name = "controller_".$controller_name;
         $action_name = "action_".$action_name;
 
+        print_r($routes);
+        if($routes[1] == "exit.php"){
+            $controller_name = "controller_login.php";
+            $action_name = "action_exit";
+        }
         #$model_file = strtolower($model_name);
         #$model_path = "weather/models/".$model_file;
 
@@ -42,7 +47,7 @@ class Route{
         $controller_file = strtolower($controller_name);
         $controller_path = "weather/controllers/".$controller_file;
 
-        (Route::check_file_exists($controller_path) and include($controller_path)) or
+        (Route::check_file_exists($controller_path) and require_once($controller_path)) or
         (die($controller_path));
 //        (die("File ".$controller_name." does not exists!"));
 
@@ -52,7 +57,7 @@ class Route{
 
         $controller = new $class_name();
         $action = $action_name;
-
+        print($action);
         if(method_exists($controller,$action)){
             try{
                 $controller->$action();

@@ -47,7 +47,7 @@ class DB_Operations{
 
     public function query_executor($query){
         $res = $this->get_connect()->query($query);
-        if ($res === null){
+        if ($res === null or $res === true){
             return true;
         }
         return $res->fetch_assoc();

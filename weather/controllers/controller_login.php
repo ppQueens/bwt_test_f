@@ -70,11 +70,17 @@ class Controller_Login extends Controller {
             if($user_data["hash"] == $_COOKIE["hash"]){
                 return $user_data;
             }
+            else{
+                setcookie("name","",time()-1,"/");
+                setcookie("hash", "", time()-1,"/");
+            }
         }
+        return false;
+    }
 
+    public function action_exit(){
         setcookie("name","",time()-1,"/");
         setcookie("hash", "", time()-1,"/");
-        return false;
-
+        $this->action_index();
     }
 }

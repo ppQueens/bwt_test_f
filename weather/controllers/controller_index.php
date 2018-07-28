@@ -14,10 +14,9 @@ class Controller_Index extends Controller {
         $this->content = "main_nav_template.php";
         $this->template = "template_view.php";
     }
-//    function action_index()
-//    {
-//        $this->view->generate("views/main_nav_template.php","views/template_view.php");
-//    }
-
+    function action_index()
+    {
+        Controller::action_index();
+    }
 
 }

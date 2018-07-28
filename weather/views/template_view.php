@@ -47,18 +47,14 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input class="form-control" placeholder="Search" type="text">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><?php
-                        require_once "weather/controllers/controller_login.php";
-                        if($user_data = Controller_Login::is_logged()){
-                            print($user_data["email"]);
-                        } ?></a></li>
+                <li><a href="#"> <?php if($data){ print("Your login: ".$data["email"]);}
+                        else{ echo '<li><a href="/exit.php">Вход</a></li>';}
+                ?></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/exit.php"><?php if($data){ print("Выход");} ?> </a></li>
             </ul>
         </div>
     </div>
