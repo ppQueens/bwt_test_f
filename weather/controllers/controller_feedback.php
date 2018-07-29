@@ -26,8 +26,9 @@ class Controller_Feedback extends Controller {
 
     public function action_leave_feedback(){
         session_start();
-        if($data = Controller_Login::is_logged()and isset($_POST["feedback"])) {
-
+        if(($data = Controller_Login::is_logged() or  $user_pass =(new Model_User($_POST["email"]))->is_user_exist("password"))
+            and isset($_POST["feedback"]) and $user_pass["password"] == hash("sha256",$_POST["password"])) {
+            print("isede");
             if ($_SESSION['randomnr2'] == md5($_POST['notrobot'])){
 
 
@@ -36,9 +37,14 @@ class Controller_Feedback extends Controller {
 
             if ($feedback and $id = $feedback->is_user_exist()) {
                     #$this->view->generate($data);
-                $feedback->save_to_db("feedback_test",$id);
 
-                header("Location: /feedback.php/show_feeds");
+                $feedback->save_to_db("feedback_test",$id);
+                if($data){
+                    header("Location: /feedback.php/show_feeds");
+                }{
+                    header("Location: /index.php");
+                }
+
 
             }
             }

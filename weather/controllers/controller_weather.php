@@ -29,7 +29,7 @@ class Controller_Weather extends Controller {
 
     public function action_weather_today(){
         error_reporting(E_ALL & ~E_WARNING);
-        if($data = (new Controller_Login())::is_logged()){
+        if($data = (new Controller_Login())::is_logged() or !$data=null){
 
 
             $client = new Client(['base_uri' => 'https://www.gismeteo.ua/']);
