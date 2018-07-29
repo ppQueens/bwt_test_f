@@ -31,7 +31,7 @@ class Model_Feed extends Model {
 
     public function save_to_db($table = "feedback_test", $field_value = "user property"){
 
-        Model::save_to_db("feedback_test",array("author"=>$field_value["id"],"text"=>$this->text,
+       return Model::save_to_db("feedback_test",array("author"=>$field_value["id"],"text"=>$this->text,
             'time'=> $this->time->format('Y-m-d H:i')));
     }
 

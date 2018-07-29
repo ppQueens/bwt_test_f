@@ -18,7 +18,7 @@ class View {
         $this->template = $template;
     }
 
-    function generate($data = null){
+    function generate($data = null, $message = null){
         include 'weather/views/'.$this->template;
     }
 

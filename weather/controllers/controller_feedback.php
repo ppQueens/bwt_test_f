@@ -25,19 +25,30 @@ class Controller_Feedback extends Controller {
 
 
     public function action_leave_feedback(){
-        print("EEFEFK");
-        if(isset($_POST["email"]) and isset($_POST["feedback"])) {
-            print("EFEF");
-            $feedback = new Model_Feed($_POST["email"],$_POST["feedback"],
-                (new DateTime())->setTimezone(new DateTimeZone("Europe/Kiev")));;
+        session_start();
+        if($data = Controller_Login::is_logged()and isset($_POST["feedback"])) {
 
+            if ($_SESSION['randomnr2'] == md5($_POST['notrobot'])){
+
+
+            $feedback = new Model_Feed($_POST["email"],$_POST["feedback"],
+                (new DateTime())->setTimezone(new DateTimeZone("Europe/Kiev")));
 
             if ($feedback and $id = $feedback->is_user_exist()) {
+                    #$this->view->generate($data);
                 $feedback->save_to_db("feedback_test",$id);
-                print("HEREF");
+
+                header("Location: /feedback.php/show_feeds");
+
             }
-            return false;
+            }
+            else {
+
+                $this->view->generate($data,"Неправильное значение капчи");
+            }
         }
+        return false;
+
     }
 
     public function action_show_feeds(){

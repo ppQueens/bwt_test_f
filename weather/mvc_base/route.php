@@ -39,7 +39,7 @@ class Route{
             $action_name = "action_exit";
         }
 
-        if($routes[1] == "feedback.php" and $routes[2] == "show_feeds") {
+        if($routes[1] == "feedback.php" and isset($routes[2]) and $routes[2]== "show_feeds") {
                 $action_name = "action_show_feeds";
 
         }
@@ -68,7 +68,7 @@ class Route{
 
         $controller = new $class_name();
         $action = $action_name;
-        print($controller_name);
+        print($action);
         if(method_exists($controller,$action)){
             try{
                 $controller->$action();

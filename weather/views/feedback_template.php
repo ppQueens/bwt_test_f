@@ -1,3 +1,4 @@
+
 <form class="form-horizontal" action="/feedback.php" method="POST">
     <input hidden name="post" value="leave_feedback">
     <fieldset>
@@ -7,7 +8,8 @@
             include("html/user_feed_data.html");
         }
         else{
-            echo '<input hidden type="email" name="email" value="'.$data["email"].'">';
+            print_r($data);
+            echo '<input hidden type="email" name="email" value="'.$data["user"]["email"].'">';
         }
         ?>
         <div class="form-group">
@@ -19,7 +21,12 @@
         </div>
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
+                <img src="captcha.php" />
+                <input class="input" type="text" name="notrobot" />
+
                 <button type="submit" class="btn btn-primary">Отправить</button>
+                <div class="alert-danger"><?php if($message) {echo $message;}?></b></div>
+
             </div>
         </div>
     </fieldset>
