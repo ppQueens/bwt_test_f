@@ -49,12 +49,12 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"> <?php if($data){ print("Your login: ".$data["user"]["email"]);}
+                <li><a href="#"> <?php if(isset($data["user"])){ print("Your login: ".$data["user"]["email"]);}
                         else{ echo '<li><a href="/login.php">Вход</a></li>';}
                 ?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/exit.php"><?php if($data){ print("Выход");} ?> </a></li>
+                <li><a href="/exit.php"><?php if(isset($data["user"])){ print("Выход");} ?> </a></li>
             </ul>
         </div>
     </div>
