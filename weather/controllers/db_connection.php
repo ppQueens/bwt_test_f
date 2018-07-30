@@ -7,7 +7,6 @@
  */
 
 require_once("config.ini.php");
-
 class Db_connection{
     private $USER = USERNAME;
     private $PASS = PASSWORD;

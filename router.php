@@ -1,5 +1,6 @@
 <?php
 
+
 if (PHP_SAPI == 'cli-server') {
     $file = __DIR__ . parse_url($_SERVER['REQUEST_URI'])['path'];
     #print(__DIR__);

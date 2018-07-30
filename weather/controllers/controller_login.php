@@ -6,7 +6,7 @@
  * Time: 1:08 AM
  */
 
-require_once (__DIR__."/../models/model_user.php");
+
 
 class Controller_Login extends Controller {
 

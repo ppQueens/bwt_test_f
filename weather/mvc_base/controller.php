@@ -6,7 +6,7 @@
  * Time: 8:44 PM
  */
 
-require_once (__DIR__."/../controllers/controller_login.php");
+
 class Controller {
 
     public $model;

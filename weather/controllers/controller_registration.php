@@ -6,7 +6,7 @@
  * Time: 9:26 PM
  */
 
-require_once ("weather/controllers/controller_login.php");
+
 class Controller_Registration extends Controller {
 
 
