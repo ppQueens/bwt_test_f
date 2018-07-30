@@ -44,7 +44,7 @@ class Controller_Login extends Controller {
                     $hash,$user->get_data()["email"]);
                 print($query);
 
-                (new DB_Operations())->query_executor($query);
+                Db_connection::instance()->query_executor($query);
 
                 header("Location: /index.php");
             }

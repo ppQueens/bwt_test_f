@@ -9,12 +9,6 @@
 require_once ("weather/controllers/controller_login.php");
 class Controller_Registration extends Controller {
 
-     private $db_connect;
-//     private $content = "reg_form_template.php";
-//     private $template = "template_view.php";
-     #atic private $data;
-
-
 
 
     function __construct()
@@ -49,16 +43,9 @@ class Controller_Registration extends Controller {
                 ##2.проверка email на корректность (на клиенте)
                 ##3.проверка на пароля на длину (на клиенте)
                 ##проверка остальных  полей на длину
-                print("ACTION_REGISTER");
 
-                try{
-                    $this->db_connect = (new DB_Operations())->get_connect();
-                }
-                catch (Exception $e){
-                    print($e);
-                }
 
-                #is_user_exists()&
+
                 if (!$user_model->is_user_exist())
                 {
                     try{
@@ -76,7 +63,6 @@ class Controller_Registration extends Controller {
                    $this->general_action("Пользователь с таким email уже существует");
 
                 }
-
 
             }
         }

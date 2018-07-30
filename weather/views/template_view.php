@@ -47,7 +47,6 @@
                     </ul>
                 </li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"> <?php if(isset($data["user"])){ print("Your login: ".$data["user"]["email"]);}
                         else{ echo '<li><a href="/login.php">Вход</a></li>';}

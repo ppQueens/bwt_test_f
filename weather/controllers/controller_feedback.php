@@ -26,8 +26,8 @@ class Controller_Feedback extends Controller {
 
     public function action_leave_feedback(){
         session_start();
-        if(($data = Controller_Login::is_logged() or  $user_pass =(new Model_User($_POST["email"]))->is_user_exist("password"))
-            and isset($_POST["feedback"]) and $user_pass["password"] == hash("sha256",$_POST["password"])) {
+        if(($data = Controller_Login::is_logged() or  ($user_pass =(new Model_User($_POST["email"]))->is_user_exist("password"))
+            and isset($_POST["feedback"]) and $user_pass["password"] == hash("sha256",$_POST["password"]))) {
             print("isede");
             if ($_SESSION['randomnr2'] == md5($_POST['notrobot'])){
 
@@ -35,18 +35,18 @@ class Controller_Feedback extends Controller {
             $feedback = new Model_Feed($_POST["email"],$_POST["feedback"],
                 (new DateTime())->setTimezone(new DateTimeZone("Europe/Kiev")));
 
-            if ($feedback and $id = $feedback->is_user_exist()) {
-                    #$this->view->generate($data);
+                if ($feedback and $id = $feedback->is_user_exist()) {
+                        #$this->view->generate($data);
 
-                $feedback->save_to_db("feedback_test",$id);
-                if($data){
-                    header("Location: /feedback.php/show_feeds");
-                }{
-                    header("Location: /index.php");
+                    $feedback->save_to_db("feedback_test",$id);
+                    if($data){
+                        header("Location: /feedback.php/show_feeds");
+                    }{
+                        header("Location: /index.php");
+                    }
+
+
                 }
-
-
-            }
             }
             else {
 
@@ -64,17 +64,15 @@ class Controller_Feedback extends Controller {
 
             $query = "SELECT `email`, `text`, `time` FROM feedback_test
                     INNER JOIN user_test ON feedback_test.author = user_test.id";
-            $all_feeds = (new DB_Operations())->query_executor($query);
+            $all_feeds = Db_connection::instance()->query_executor($query);
             $data["feeds"]=$all_feeds;
             $content->view->generate($data);
+            return True;
 
         }
-        else{
-            return false;
-        }
+         return false;
 
 
-}
+    }
 
 }
-

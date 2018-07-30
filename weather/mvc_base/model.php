@@ -36,7 +36,7 @@ class Model {
             $field_value[1]);
         print($query_format);
 
-        if (!(new DB_Operations())->query_executor($query_format)){
+        if (Db_connection::instance()->query_executor($query_format)){
             die("SOMETHING IS WRONG WITH QUERY");
         }
         return True;

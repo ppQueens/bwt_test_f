@@ -30,7 +30,7 @@ class Model_User extends Model {
         $c = sprintf("%s = '%s'",$clause,$clause_value == null ? $this->user["email"] : $clause_value);
         $query_format = sprintf("SELECT  %s FROM `user_test` WHERE %s",$f,$c);
 
-        return  (new DB_Operations())->query_executor($query_format);
+        return  Db_connection::instance()->query_executor($query_format);
 
     }
 
