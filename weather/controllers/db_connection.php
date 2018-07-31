@@ -50,13 +50,18 @@ class Db_connection{
 
     public function close_connect(){
         self::$instance = null;
+        self::$DB_CONNECT = null;
     }
+
+
 
     public function __clone() {
         throw new Exception("Only one instance is allowed");
     }
+
+
     public function query_executor($query){
-        $res = $this->get_connect()->query($query);
+        $res = self::$instance->get_connect()->query($query);
         if (!$res){
             return $res;
         }
